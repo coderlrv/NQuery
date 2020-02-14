@@ -1,5 +1,5 @@
 {
-    "name": "preflrv/nquery",
+    "name": "coderlrv/nquery",
     "description": "Utilitário para criar SQLão",
     "type": "library",
     "keywords" : [ "slim", "php", "Nquery","SQLAO","Zord", "megaZord"],
