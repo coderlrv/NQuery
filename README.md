@@ -1,2 +1,2 @@
 # NQuery
-Ultilitário para gerar SQL.
+Utilitário para gerar SQL.
