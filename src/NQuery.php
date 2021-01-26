@@ -8,6 +8,9 @@ class NQuery{
     const PARAM_INT = 2;
     const PARAM_RAW = 3;
 
+    const AND = 'AND';
+    const OR = 'OR';
+
     protected $query = '';
     protected $wheres = '';
     protected $limitValue = '';
@@ -252,7 +255,7 @@ class NQuery{
      */
     public function groupBy($value){
         if(is_array($value)){
-            $value = inplode(' ',$value);
+            $value = implode(' ',$value);
         }
 
         $this->groupByvalue = " group by $value";
@@ -390,6 +393,16 @@ class NQuery{
 
         return $this;
     }
+
+    public function whereLikeFull(array $columns,$value,$boolean = 'AND')
+    {
+        foreach($columns as $column){
+            $this->whereOr($column,"like","%$value%");
+        }
+
+        return $this;
+    }
+
     /**
      *  Executa sql e converte para collection
      *
