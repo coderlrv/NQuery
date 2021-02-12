@@ -195,17 +195,18 @@ class NQuery{
         return $this;
     }
     /**
-     * Adiciona sql na codições where da consulta e aplica 'AND' caso ja exista codições.
+     * Adiciona sql na codições where da consulta e aplica 'AND' ou 'OR' caso ja exista codições.
      * 
      * @param string $sql
      * @return $this
      */
-    public function whereRaw($sql){
-        $this->wheres .= $this->checkInitialWhere() ? "" : " AND ";
+    public function whereRaw($sql, $boolean="AND"){
+        $this->wheres .= $this->checkInitialWhere() ? "" : " $boolean ";
         $this->wheres .= "$sql";
 
         return $this;
     }
+    
     /**
      * Defini o "orderBy " na query.
      * 
