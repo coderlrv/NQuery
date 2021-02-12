@@ -494,6 +494,7 @@ class NQuery{
 
         $this->wheres .= "($subCondition)";
     }
+    
     private function checkInitialWhere(){
         return (strlen($this->wheres) == 0);
     }
@@ -501,6 +502,7 @@ class NQuery{
     private function checkInitialHaving(){
         return (strlen($this->havingValue) == 0);
     }
+
     private function convertArrayToIn(array $value){
         if(is_int($value[0])){
             $value = implode(",",$value);
@@ -513,16 +515,7 @@ class NQuery{
         }
         return $value;
     }
-    
-    private function antiInjection($obj) {
-        $obj = preg_replace("/(from|alter table|select|insert|delete|update|where|drop table|show tables|#|--|\\)/i", "", $obj);
-        $obj = trim($obj);
-        $obj = strip_tags($obj);
-        if(!get_magic_quotes_gpc()) {
-            $obj = addslashes($obj);
-            return $obj;	   
-        }
-    }   
+
     function sqlEscapeMimic($inp) {
         if(is_array($inp)) 
             return array_map(__METHOD__, $inp); 

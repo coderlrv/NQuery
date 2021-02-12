@@ -149,6 +149,16 @@ class NQueryTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('select coluna from tab_usuario b where b.coluna = 1 AND b.coluna = 2 or b.coluna = 3',$query->toSql());
     }
 
+    public function testWhereRawOr()
+    {
+        $query = new NQuery('select coluna from tab_usuario b');
+        $query->where('b.coluna',1);
+        $query->whereRaw('b.coluna = 2 OR b.coluna = 3',NQuery::OR);
+        
+
+        $this->assertEquals('select coluna from tab_usuario b where b.coluna = 1 OR b.coluna = 2 OR b.coluna = 3',$query->toSql());
+    }
+
     public function testWhereBetween()
     {
         $query = new NQuery('select coluna from tab_usuario b');
